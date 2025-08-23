@@ -10,17 +10,20 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Traits\ApiResponse;
 
 class AuthController extends Controller
 {
+    use ApiResponse;
     public function register(CreateUserRequest $request): JsonResponse
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
 
-        User::query()->create($data);
+        $user = User::query()->create($data);
+        $user->sendEmailVerificationNotification();
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+        return $this->success($user, 'User registered successfully.', 201);
     }
 
     public function login(LoginRequest $request): JsonResponse
@@ -29,8 +32,12 @@ class AuthController extends Controller
 
         $user = User::query()->where('email', $data['email'])->first();
 
+        if (empty($user) || $user->email_verified_at === null) {
+            return $this->error([], 'email is not verified.', 401);
+        }
+
         if (empty($user) || ! Hash::check($data['password'], $user->password)) {
-            return response()->json(['message' => 'The provided credentials are incorrect.'], 401);
+            return $this->error([], 'The provided credentials are incorrect.', 401);
         }
 
         $token = $user->createToken('auth_token', ['*'], now()->addDay())->plainTextToken;
@@ -38,15 +45,19 @@ class AuthController extends Controller
         return response()->json(['access_token' => $token]);
     }
 
-    public function user(Request $request): UserResource
+    public function user(Request $request) : JsonResponse
     {
-        return new UserResource($request->user());
+        if($data = new UserResource($request->user()))
+        {
+            return $this->success($data);
+        }
+        return $this->error([], 'User not found', 401);
     }
 
     public function logout(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();
-
-        return response()->json(['message' => 'Logged out successfully'], 200);
+        
+        return $this->success([], 'Logged out successfully.', 200);
     }
 }
