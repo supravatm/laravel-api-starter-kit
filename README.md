@@ -3,7 +3,7 @@
 Laravel Rest API Starter Kit with Docker
 </h1>
 
-<p align="center"><img src="1_lThfRGpuoHA0rcB6SQfrsQ@2x.webp" width="400" alt="Laravel + Docker"></p>
+<p align="center"><img src="public/img/laravel-and-docker.webp" width="400" alt="Laravel + Docker"></p>
 
 <h5 align="center">
 A Laravel & Docker Development Setup
@@ -43,3 +43,15 @@ docker-compose exec app php artisan migrate
 docker-compose exec app php artisan clear:cache
 ```
 
+## API Documentation
+<p align="center">
+<img align="center" src="public/img/postment-document-screenshot.png" alt="Preview" width="75%" />
+</p>
+</br>
+<p style="font-weight: bold;">
+Complete REST API Documentation can be found <a href="https://documenter.getpostman.com/view/497605/2sB3BLjnwZ#acab7dcb-134d-464b-93d8-ef75566f2e13">here</a>
+</p>
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
