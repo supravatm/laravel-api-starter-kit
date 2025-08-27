@@ -7,15 +7,24 @@ use App\Http\Controllers\Api\VerificationController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CarrierController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ForgotPasswordController;
+use App\Http\Controllers\Api\PasswordResetController;
 
-Route::get('/hello', function (Request $request) {
-    return ['msg' => "Hello API!", 'code'=> 200];
+
+Route::middleware('guest')->group(function () {
+
+    Route::get('/hello', function (Request $request) {
+        return ['msg' => "Hello API!", 'code'=> 200];
+    });
+    Route::post('register', [AuthController::class, 'register']);
+    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+    Route::post('/email/resend', [VerificationController::class, 'resend']);
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('/forgot-password', [ ForgotPasswordController::class, 'sendResetLink'])->name('api.password.email');
+
+    Route::post('/reset-password/{token}',[PasswordResetController::class, 'resetPassword'])->name('api.password.reset');
+
 });
-Route::post('register', [AuthController::class, 'register']);
-Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
-Route::post('/email/resend', [VerificationController::class, 'resend']);
-Route::post('login', [AuthController::class, 'login']);
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [AuthController::class, 'user']);
     Route::post('logout', [AuthController::class, 'logout']);
