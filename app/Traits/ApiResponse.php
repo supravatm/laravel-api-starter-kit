@@ -3,29 +3,31 @@
 namespace App\Traits;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 trait ApiResponse
 {
-    protected function success($data = [], $message = 'Success', $code = 200): JsonResponse
+    protected function success($data = [], $message = 'Success', $code = Response::HTTP_OK): JsonResponse
     {
-        return response()->json([
-            'success' => true,
+        $repsonse = [
+            'status' => 'success',
             'message' => $message,
-            'data' => $data,
-        ], $code);
+            'data' => $data
+        ];
+        return response()->json($repsonse, $code);
     }
 
-    protected function error($error = [], $message = 'Error', $code = 400): JsonResponse
+    protected function error($message = 'Error', int $code = Response::HTTP_INTERNAL_SERVER_ERROR, $errors = null): JsonResponse
     {
         return response()->json([
-            'status' => $code,
+            'status' => 'error',
             'message' => $message,
-            'errors' => $error,
-        ], $code);
+            'errors' => $errors,
+            ], $code);
     }
 
-    protected function validationErrorResponse($errors, $message = 'Validation Error', $code = 422): JsonResponse
+    protected function validationErrorResponse($errors, $message = 'Validation Error', $code = Response::HTTP_UNPROCESSABLE_ENTITY): JsonResponse
     {
-        return $this->error($message, $code, $errors);
+        return $this->errorResponse($message, $code, $errors);
     }
 }

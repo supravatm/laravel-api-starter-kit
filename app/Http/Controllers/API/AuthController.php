@@ -33,11 +33,12 @@ class AuthController extends Controller
         $user = User::query()->where('email', $data['email'])->first();
 
         if (empty($user) || $user->email_verified_at === null) {
-            return $this->error([], 'email is not verified.', 401);
+            return $this->error('email is not verified.', 401);
+            
         }
 
         if (empty($user) || ! Hash::check($data['password'], $user->password)) {
-            return $this->error([], 'The provided credentials are incorrect.', 401);
+            return $this->error('The provided credentials are incorrect.', 401);
         }
 
         $token = $user->createToken('auth_token', ['*'], now()->addDay())->plainTextToken;
@@ -51,7 +52,7 @@ class AuthController extends Controller
         {
             return $this->success($data);
         }
-        return $this->error([], 'User not found', 401);
+        return $this->error('User not found', 401);
     }
 
     public function logout(Request $request): JsonResponse
