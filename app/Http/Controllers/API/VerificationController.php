@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponse;
+use Illuminate\Auth\Events\Verified;
 
 class VerificationController extends Controller
 {
@@ -28,7 +29,7 @@ class VerificationController extends Controller
             }
 
             if ($request->user()->markEmailAsVerified()) {
-                event(new \Illuminate\Auth\Events\Verified($request->user()));
+                event(new Verified($request->user()));
             }
             return $this->success([], 'Email verified successfully', 200);
         }
@@ -41,6 +42,6 @@ class VerificationController extends Controller
 
             $request->user()->sendEmailVerificationNotification();
 
-            return $this->success([],'Verification email sent!', 200);
+            return $this->success([],'Verification email resent!', 200);
         }
 }
