@@ -45,11 +45,14 @@ docker-compose exec app php artisan clear:cache
 
 ## API Documentation
 <p align="center">
-    <a href="public/img/postment-document-screenshot.png" target="_blank"><img align="center" src="public/img/postment-document-screenshot.png" alt="Preview" width="75%" /></a>
+    <img align="center" src="public/img/postment-document-screenshot.png" alt="Preview" width="75%" />
+    <a href="public/img/postment-document-screenshot.png" target="_blank" rel="noopener noreferrer">
+      ![Preview](public/img/postment-document-screenshot.png)
+</a>
 </p>
 </br>
 <p style="font-weight: bold;">
-Complete REST API Documentation can be found <a href="https://documenter.getpostman.com/view/497605/2sB3BLjnwZ#acab7dcb-134d-464b-93d8-ef75566f2e13">here</a>
+Complete REST API Documentation can be found <a href="https://documenter.getpostman.com/view/497605/2sB3BLjnwZ#acab7dcb-134d-464b-93d8-ef75566f2e13" target="_blank" rel="noopener noreferrer">here</a>
 </p>
 
 ## License
