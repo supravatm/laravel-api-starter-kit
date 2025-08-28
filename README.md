@@ -46,6 +46,7 @@ docker-compose exec app php artisan clear:cache
 ## API Documentation
 <p align="center">
 <img align="center" src="public/img/postment-document-screenshot.png" alt="Preview" width="75%" />
+    <a href="public/img/postment-document-screenshot.png" target="_blank" onclick="window.open('public/img/postment-document-screenshot.png', 'Image', 'width=500,height=400'); return false;">Click to view image</a>
 </p>
 </br>
 <p style="font-weight: bold;">
