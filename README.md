@@ -50,7 +50,7 @@ docker-compose exec app php artisan clear:cache
 </p>
 </br>
 <p style="font-weight: bold;">
-Complete REST API Documentation can be found <a href="https://documenter.getpostman.com/view/497605/2sB3BLjnwZ#acab7dcb-134d-464b-93d8-ef75566f2e13" target="_blank" rel="noopener noreferrer">here</a>
+Complete REST API Documentation can be found <a href="https://documenter.getpostman.com/view/497605/2sB3BLjnwZ" target="_blank" rel="noopener noreferrer">here</a>
 </p>
 
 ## License
