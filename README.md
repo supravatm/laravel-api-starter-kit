@@ -45,7 +45,7 @@ docker-compose exec app php artisan clear:cache
 
 ## API Documentation
 <p align="center">
-    <img align="center" src="[public/img/postment-document-screenshot.png](https://raw.githubusercontent.com/supravatm/laravel-api-starter-kit/main/public/img/postment-document-screenshot.png)" alt="Preview" width="80%" />
+    <img align="center" src="https://raw.githubusercontent.com/supravatm/laravel-api-starter-kit/main/public/img/postment-document-screenshot.png" alt="Preview" width="80%" />
 
 </p>
 </br>
