@@ -14,7 +14,7 @@ A Laravel & Docker Development Setup
 Clone repo
 
 ```
-git clone git@github.com:supravatm/laravel-api-starter-kit.git
+git clone git@github.com:supravatm/laravel-v12-api-starter.git
 ```
 To install your dependencies run the following in your project directory all you need is this one liner —
 ```
@@ -45,7 +45,7 @@ docker-compose exec app php artisan clear:cache
 
 ## API Documentation
 <p align="center">
-    <img align="center" src="https://raw.githubusercontent.com/supravatm/laravel-api-starter-kit/main/public/img/postment-document-screenshot.png" alt="Preview" width="80%" />
+    <img align="center" src="https://raw.githubusercontent.com/supravatm/laravel-v12-api-starter/main/public/img/postment-document-screenshot.png" alt="Preview" width="80%" />
 
 </p>
 </br>
