@@ -58,6 +58,10 @@ DB_PASSWORD=password
 
 ### 4. Start Containers
 
+```sh
+docker-compose up -d
+```
+
 > **Note:** Some containers wait for the database service to be healthy before starting.
 
 ### 5. Laravel Setup
